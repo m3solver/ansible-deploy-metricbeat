@@ -1,0 +1,25 @@
+metricbeat.modules:
+{% if activate_system_module %}
+- module: system
+  metricsets:
+    - cpu
+    - filesystem
+    - memory
+    - network
+    - process
+  enabled: true
+  period: 120s
+  processes: ['.*']
+  cpu_ticks: false
+
+{% endif %}
+{% if activate_docker_module %}
+- module: docker
+  metricsets: ["container", "cpu", "diskio", "healthcheck", "info", "memory", "network"]
+  hosts: ["unix:///var/run/docker.sock"]
+  enabled: true
+  period: 120s
+
+{% endif %}
+output.elasticsearch:
+  hosts: ["{{elk_server}}:9200"]

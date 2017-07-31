@@ -1,0 +1,10 @@
+---
+- name: Install metricbeat for system
+  hosts: localhost
+  vars:
+    - elk_server: localhost
+    - deploy_dashboard: false
+    - activate_system_module: true
+    - activate_docker_module: true
+  roles:
+    - { role: ansible-deploy-metricbeat }
