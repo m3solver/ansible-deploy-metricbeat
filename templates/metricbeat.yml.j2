@@ -8,7 +8,7 @@ metricbeat.modules:
     - network
     - process
   enabled: true
-  period: 120s
+  period: 10s
   processes: ['.*']
   cpu_ticks: false
 
@@ -18,7 +18,7 @@ metricbeat.modules:
   metricsets: ["container", "cpu", "diskio", "healthcheck", "info", "memory", "network"]
   hosts: ["unix:///var/run/docker.sock"]
   enabled: true
-  period: 120s
+  period: 10s
 
 {% endif %}
 output.elasticsearch:
